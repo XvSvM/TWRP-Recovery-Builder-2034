@@ -16,23 +16,23 @@ on:
       DEVICE_TREE:
         description: 'Custom Recovery Tree' 
         required: true
-        default: 'https://github.com/kinguser981/cap_sprout_twrp'
+        default: 'https://github.com/XvSvM/H728SLM.git'
       DEVICE_TREE_BRANCH:
         description: 'Custom Recovery Tree Branch' 
         required: true
-        default: 'android-12.1'
+        default: 'diana_p1_arm64-userdebug-14-UP1A.231105.001.A1-eng.ubuntu.20250217.194226-release-keys'
       DEVICE_PATH:
         description: 'Specify your Device Path' 
         required: true
-        default: 'device/nokia/cap_sprout'
+        default: 'device/askey/adt3'
       DEVICE_NAME:
         description: 'Specify your Device Codename' 
         required: true
-        default: 'cap_sprout'
+        default: 'adt3'
       BUILD_TARGET:
         description: 'Specify your Build Target' 
         required: true
-        default: 'recovery'
+        default: 'vendorboot'
         type: choice
         options:
         - boot
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-22.04
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TEST2025: ${{ secrets.TEST2025 }}
     permissions:
       contents: write
     steps:
@@ -120,8 +120,8 @@ jobs:
       run: |
         mkdir workspace
         cd workspace
-        git config --global user.name "Samuel Kendall"
-        git config --global user.email "kinguser981@gmail.com"
+        git config --global user.name "XvSvM"
+        git config --global user.email "vadiagadia@gmail.com"
         repo init --depth=1 -u ${{ steps.manifest.outputs.value }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
   
     - name: Repo Sync
