@@ -24,11 +24,11 @@ on:
       DEVICE_PATH:
         description: 'Specify your Device Path' 
         required: true
-        default: 'device/askey/adt3'
+        default: 'device/x96/x96qproplus'
       DEVICE_NAME:
         description: 'Specify your Device Codename' 
         required: true
-        default: 'adt3'
+        default: 'x96qproplus'
       BUILD_TARGET:
         description: 'Specify your Build Target' 
         required: true
