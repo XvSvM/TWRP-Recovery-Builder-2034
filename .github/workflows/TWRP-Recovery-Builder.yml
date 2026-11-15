@@ -136,10 +136,14 @@ jobs:
         cd ${{ github.event.inputs.DEVICE_PATH }}
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
-    - name: Patch missing NDK platform libs
+        - name: Patch missing NDK platform libs
       run: |
         cd workspace
         grep -rnwl 'android.security.apc-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.security.apc-ndk_platform/android.security.apc-ndk/g'
+        grep -rnwl 'android.security.authorization-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.security.authorization-ndk_platform/android.security.authorization-ndk/g'
+        grep -rnwl 'android.security.maintenance-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.security.maintenance-ndk_platform/android.security.maintenance-ndk/g'
+        grep -rnwl 'android.security.metrics-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.security.metrics-ndk_platform/android.security.metrics-ndk/g'
+        grep -rnwl 'android.security.legacykeystore-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.security.legacykeystore-ndk_platform/android.security.legacykeystore-ndk/g'
         grep -rnwl 'android.system.keystore2-V1-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.system.keystore2-V1-ndk_platform/android.system.keystore2-V3-ndk/g'
         grep -rnwl 'android.hardware.security.keymint-V1-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.hardware.security.keymint-V1-ndk_platform/android.hardware.security.keymint-V3-ndk/g'
         grep -rnwl 'android.hardware.security.secureclock-V1-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.hardware.security.secureclock-V1-ndk_platform/android.hardware.security.secureclock-V1-ndk/g'
