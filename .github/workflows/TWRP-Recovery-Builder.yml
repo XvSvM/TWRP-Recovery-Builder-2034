@@ -136,10 +136,14 @@ jobs:
         cd ${{ github.event.inputs.DEVICE_PATH }}
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
     
-    - name: Patch missing NDK platform libs
+        - name: Patch missing NDK platform libs
       run: |
         cd workspace
         grep -rnwl 'android.security.apc-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.security.apc-ndk_platform/android.security.apc-ndk/g'
+        grep -rnwl 'android.system.keystore2-V1-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.system.keystore2-V1-ndk_platform/android.system.keystore2-V3-ndk/g'
+        grep -rnwl 'android.hardware.security.keymint-V1-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.hardware.security.keymint-V1-ndk_platform/android.hardware.security.keymint-V3-ndk/g'
+        grep -rnwl 'android.hardware.security.secureclock-V1-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.hardware.security.secureclock-V1-ndk_platform/android.hardware.security.secureclock-V1-ndk/g'
+        grep -rnwl 'android.hardware.security.sharedsecret-V1-ndk_platform' device/ bootable/ vendor/ 2>/dev/null | xargs -r sed -i 's/android.hardware.security.sharedsecret-V1-ndk_platform/android.hardware.security.sharedsecret-V1-ndk/g'
 
     - name: Check Build Makefile
       run: |
