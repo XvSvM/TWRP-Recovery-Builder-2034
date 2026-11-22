@@ -24,11 +24,11 @@ on:
       DEVICE_PATH:
         description: 'Specify your Device Path' 
         required: true
-        default: 'device/x96/x96qproplus'
+        default: 'device/askey/adt3'
       DEVICE_NAME:
         description: 'Specify your Device Codename' 
         required: true
-        default: 'x96qproplus'
+        default: 'adt3'
       BUILD_TARGET:
         description: 'Specify your Build Target' 
         required: true
@@ -173,7 +173,7 @@ jobs:
         cd workspace
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        lunch twrp_x96qproplus-ap2a-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
+        lunch twrp_adt3-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
         echo "Done building your ${{ github.event.inputs.BUILD_TARGET }}.img"
       
     - name: Set Build Date # Output will be use in Release
